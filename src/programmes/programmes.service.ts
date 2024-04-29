@@ -8,13 +8,14 @@ export class ProgrammesService {
     constructor(@InjectRepository(ProgrammeEntity) private programmeRepository: Repository<ProgrammeEntity>) { }
 
     async getPrograms(): Promise<ProgrammeEntity[]> {
-        return await this.programmeRepository.find();
+        return await this.programmeRepository.find({relations: ["exercices", "user"]});
     }
 
     async getProgram(_id: number): Promise<ProgrammeEntity> {
-        return await this.programmeRepository.find({
-            where: [{ "id": _id }]
-        })[0];
+        return await this.programmeRepository.findOne({
+            where: [{ "id": _id }],
+            relations: ["exercices", "user"],
+        });
     }
 
      async createProgram(programme: ProgrammeEntity) {

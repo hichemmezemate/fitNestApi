@@ -10,13 +10,13 @@ export class UsersService {
     constructor(@InjectRepository(UserEntity) private userRepository: Repository<UserEntity>) { }
 
     async getUsers(): Promise<UserEntity[]> {
-        return await this.userRepository.find({relations:[ "roles", "programme"]});
+        return await this.userRepository.find({relations:[ "role", "programme"]});
     }
 
     async getUser(_id: number): Promise<UserEntity> {
         return await this.userRepository.findOne({
             where: { id: _id }, 
-            relations: ["roles", "programme"]
+            relations: ["role", "programme"]
         });
     }
 

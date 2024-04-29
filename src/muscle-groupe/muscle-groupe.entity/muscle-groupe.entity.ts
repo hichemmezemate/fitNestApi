@@ -9,6 +9,7 @@ export class MuscleGroupeEntity {
     @Column({ length: 45 })
     nom_muscle:string;
 
-    @ManyToMany(() => ExerciceEntity, (exercice) => exercice.muscleGroupe)
+    @ManyToMany(() => ExerciceEntity, (exercice) => exercice.muscleGroupe,
+    {onDelete: 'CASCADE', onUpdate: 'NO ACTION'})
     exercices?: ExerciceEntity[]
 }

@@ -1,5 +1,5 @@
 import { UserEntity } from "src/users/user.entity/user.entity";
-import { Column, Entity, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class RoleEntity {
@@ -9,6 +9,6 @@ export class RoleEntity {
     @Column({ length: 50 })
     nom: string;
 
-    @ManyToOne(() => UserEntity, (user) => user.roles, { onDelete: "CASCADE"})
+    @OneToMany(() => UserEntity, (user) => user.role, { onDelete: "SET NULL"})
     users: UserEntity[]
 }
