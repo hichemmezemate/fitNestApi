@@ -26,7 +26,7 @@ export class UserEntity {
     @Column({nullable: true})
     poids: number;
     
-    @OneToOne(() => RoleEntity, (role) => role.users, { onDelete: "SET NULL"})
+    @OneToMany(() => RoleEntity, (role) => role.users, { onDelete: "SET NULL"})
     @JoinColumn({ name: "role_id" })
     role: RoleEntity;
     
